@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h1>Yelp Review Recommendation System</h1>
+
+    <div id="select-user-button" style="display: none">
+      <button onclick="selectUserAgain()">Select User Again</button>
+    </div>
+
+    <div id="user-cards">
+      {% for user in users %}
+
+      <article
+        class="card"
+        id="user-{{user.id}}"
+        onclick="loadBusinessCards({{ user.id }})"
+      >
+        <div class="inner">
+          <span class="pricing">
+            <span> {{user.user.review_count}}<small> Reviews</small> </span>
+          </span>
+          <h2 class="title">{{user.user.name}}</h2>
+          <p class="info">Yelping Since : {{user.user.yelping_since}}</p>
+          <ul class="features">
+            <li>
+              <span class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <span><strong>{{user.user.useful}}</strong> Useful Reviews</span>
+            </li>
+            <li>
+              <span class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <span><strong>{{user.user.fans}}</strong> Fans</span>
+            </li>
+            <li>
+              <span class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              <span
+                ><strong
+                  >{{user.user.compliment_hot + user.user.compliment_more +
+                  user.user.compliment_profile + user.user.compliment_cute +
+                  user.user.compliment_list + user.user.compliment_note +
+                  user.user.compliment_plain + user.user.compliment_cool +
+                  user.user.compliment_funny + user.user.compliment_writer +
+                  user.user.compliment_photos }}</strong
+                >
+                Compliments</span
+              >
+            </li>
+          </ul>
+
+          <span class="star">
+            {% set rating = user.user.average_stars %} {% for _ in range(rating
+            | int) %} &#9733; {% endfor %} {% if rating % 1 != 0 %}
+            <span class="half-star">&#9733;</span>
+            {% endif %}
+          </span>
+        </div>
+      </article>
+
+      {% endfor %}
+    </div>
+
+    <div id="business-cards" style="display: none"></div>
+
+    <script>
+      function selectUserAgain() {
+        const userCardsContainer = document.getElementById("user-cards");
+        const businessCardsContainer =
+          document.getElementById("business-cards");
+        const selectUserButton = document.getElementById("select-user-button");
+
+        userCardsContainer.style.display = "flex";
+        businessCardsContainer.style.display = "none";
+        selectUserButton.style.display = "none";
+      }
+
+      function loadBusinessCards(selectedUserId) {
+        const userCards = document.querySelectorAll(".card");
+        userCards.forEach((card) => card.classList.remove("card-selected"));
+        document
+          .getElementById("user-" + selectedUserId)
+          .classList.add("card-selected");
+
+        const fetchData = async () => {
+          const delay = (ms) =>
+            new Promise((resolve) => setTimeout(resolve, ms));
+
+          await delay(1500);
+
+          const userCardsContainer = document.getElementById("user-cards");
+          const businessCardsContainer =
+            document.getElementById("business-cards");
+          const selectUserButton =
+            document.getElementById("select-user-button");
+
+          userCardsContainer.style.display = "none";
+          businessCardsContainer.style.display = "flex";
+          selectUserButton.style.display = "block";
+
+          fetch(`/api/get_businesses/`)
+            .then((response) => response.json())
+            .then((businesses) => {
+              businessCardsContainer.innerHTML = "";
+
+              businesses.forEach((business) => {
+                const card = document.createElement("article");
+                card.id = "business-" + business.id;
+                card.classList.add("card-business");
+                card.onclick = async () => {
+                  document
+                    .getElementById("business-" + business.id)
+                    .classList.add("card-selected");
+
+                  const delay = (ms) =>
+                    new Promise((resolve) => setTimeout(resolve, ms));
+
+                  await delay(1500);
+                  window.location.href = `/predict/${selectedUserId}/${business.id}`;
+                };
+
+                const innerDiv = document.createElement("div");
+                innerDiv.classList.add("inner-business");
+
+                innerDiv.innerHTML = `
+                    <span class="pricing">
+                        <span>
+                            ${
+                              business.business.review_count
+                            }<small> Reviews</small>
+                        </span>
+                    </span>
+                    <h2 class="title-business">${business.business.name}</h2>
+                    <p class="info"> Address : ${business.business.address}, ${
+                  business.business.city
+                }, ${business.business.state}, ${
+                  business.business.postal_code
+                }</p>
+                    <ul class="features">
+                    <li>
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span><strong>Good</strong> for Kids</span>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span>Parking <strong>Available</strong></span>
+                    </li>
+                    <li>
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <span><strong>Accepts</strong> Credit Cards</span>
+                    </li>
+                </ul>
+                <span class="star-business">
+                ${"&#9733;".repeat(business.business.stars)}
+                ${
+                  business.business.stars % 1 !== 0
+                    ? '<span class="half-star">&#9733;</span>'
+                    : ""
+                }
+                 </span>
+                `;
+
+                card.appendChild(innerDiv);
+                businessCardsContainer.appendChild(card);
+              });
+            });
+        };
+        fetchData();
+      }
+    </script>
+  </body>
+</html>

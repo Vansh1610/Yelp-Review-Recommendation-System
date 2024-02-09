@@ -8,15 +8,15 @@ The files **app.py** and **recommen.py**, are stored in a private repository and
 
 ## Features
   
-2. **Collaborative Filtering Algorithms**:
+1. **Collaborative Filtering Algorithms**:
 
     •⁠ Implement item-item collaborative filtering algorithms to identify similar items based on user ratings and business features achieving an RMSE of 1.09.
 
-3. **Model-Based Recommendation**:
+2. **Model-Based Recommendation**:
    
     • Implement machine learning models, such as XGBRegressor, to predict ratings for  businesses, achievign an RMSE of 1.
 
-5. **Hybrid Recommendation System**:
+3. **Hybrid Recommendation System**:
    
     • Constructed a refined hybrid recommendation model combining above techniques by performing feature engineering, yielding RMSE of 0.9792 (validation) and 0.9798 (test).
 
@@ -25,13 +25,13 @@ The files **app.py** and **recommen.py**, are stored in a private repository and
 
 1. **Data Mining**: Utilized data mining techniques to extract meaningful insights from large datasets.
 
-2.  **Spark RDD**: Leveraged Spark RDD (Resilient Distributed Datasets) for efficient and distributed data processing.
+2. **Spark RDD**: Leveraged Spark RDD (Resilient Distributed Datasets) for efficient and distributed data processing.
 
-3.⁠  **Flask**: Implemented the web application using Flask, a lightweight and flexible web framework for Python.
+3.⁠ **Flask**: Implemented the web application using Flask, a lightweight and flexible web framework for Python.
 
-4.  **Collaborative Filtering**: Employed collaborative filtering algorithms to provide recommendations of places based on the preferences of similar users.
+4. **Collaborative Filtering**: Employed collaborative filtering algorithms to provide recommendations of places based on the preferences of similar users.
 
-5.  **XGBoost**: Utilized XGBoost, a powerful machine learning library, for model-based recommendation and prediction tasks.
+5. **XGBoost**: Utilized XGBoost, a powerful machine learning library, for model-based recommendation and prediction tasks.
 
 
 

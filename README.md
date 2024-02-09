@@ -7,10 +7,6 @@ The files **app.py** and **recommen.py**, are stored in a private repository and
 
 
 ## Features
-
-1. **Item-Item Interaction Analysis**:
-
-    •⁠ Analyze item-item interaction data to identify similarities between items (places).
   
 2. **Collaborative Filtering Algorithms**:
 
@@ -18,7 +14,7 @@ The files **app.py** and **recommen.py**, are stored in a private repository and
 
 3. **Model-Based Recommendation**:
    
-    • Implement sophisticated machine learning models, such as XGBRegressor, to predict ratings for  businesses, achievign an RMSE of 1.
+    • Implement machine learning models, such as XGBRegressor, to predict ratings for  businesses, achievign an RMSE of 1.
 
 5. **Hybrid Recommendation System**:
    
@@ -27,15 +23,15 @@ The files **app.py** and **recommen.py**, are stored in a private repository and
 
 ## Techniques Used
 
-•⁠  **Data Mining**: Utilized data mining techniques to extract meaningful insights from large datasets.
+1. **Data Mining**: Utilized data mining techniques to extract meaningful insights from large datasets.
 
-•⁠  **Spark RDD**: Leveraged Spark RDD (Resilient Distributed Datasets) for efficient and distributed data processing.
+2.  **Spark RDD**: Leveraged Spark RDD (Resilient Distributed Datasets) for efficient and distributed data processing.
 
-•⁠  **Flask**: Implemented the web application using Flask, a lightweight and flexible web framework for Python.
+3.⁠  **Flask**: Implemented the web application using Flask, a lightweight and flexible web framework for Python.
 
-•⁠  **Collaborative Filtering**: Employed collaborative filtering algorithms to provide recommendations of places based on the preferences of similar users.
+4.  **Collaborative Filtering**: Employed collaborative filtering algorithms to provide recommendations of places based on the preferences of similar users.
 
-•⁠  **XGBoost**: Utilized XGBoost, a powerful machine learning library, for model-based recommendation and prediction tasks.
+5.  **XGBoost**: Utilized XGBoost, a powerful machine learning library, for model-based recommendation and prediction tasks.
 
 
 

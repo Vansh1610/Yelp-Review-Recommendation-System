@@ -3,39 +3,39 @@
 Welcome to my Yelp Restaurants Recommendation System project! The aim of this project is to develop a personalized recommendation system capable of predicting ratings for places based similarities between businesses. Leveraging Big Data functionalities such as Spark RDD (Resilient Distributed Datasets) and collaborative filtering algorithms, the system analyzes past user ratings and preferences to generate accurate and personalized recommendations.
 
 # Note
-The files *app.py* and *recommen.py*, are stored in a private repository and cannot be shared on a public domain due to project guidelines and requirements.
+The files **app.py** and **recommen.py**, are stored in a private repository and cannot be shared on a public domain due to project guidelines and requirements.
 
 
 ## Features
 
-1. *Item-Item Interaction Analysis*:
+1. **Item-Item Interaction Analysis**:
 
     •⁠ Analyze item-item interaction data to identify similarities between items (places).
   
-2. *Collaborative Filtering Algorithms*:
+2. **Collaborative Filtering Algorithms**:
 
     •⁠ Implement item-item collaborative filtering algorithms to identify similar items based on user ratings and business features achieving an RMSE of 1.09.
 
-3. *Model-Based Recommendation*:
+3. **Model-Based Recommendation**:
    
     • Implement sophisticated machine learning models, such as XGBRegressor, to predict ratings for  businesses, achievign an RMSE of 1.
 
-5. *Hybrid Recommendation System*:
+5. **Hybrid Recommendation System**:
    
     • Constructed a refined hybrid recommendation model combining above techniques by performing feature engineering, yielding RMSE of 0.9792 (validation) and 0.9798 (test).
 
 
 ## Techniques Used
 
-•⁠  *Data Mining*: Utilized data mining techniques to extract meaningful insights from large datasets.
+•⁠  **Data Mining**: Utilized data mining techniques to extract meaningful insights from large datasets.
 
-•⁠  *Spark RDD*: Leveraged Spark RDD (Resilient Distributed Datasets) for efficient and distributed data processing.
+•⁠  **Spark RDD**: Leveraged Spark RDD (Resilient Distributed Datasets) for efficient and distributed data processing.
 
-•⁠  *Flask*: Implemented the web application using Flask, a lightweight and flexible web framework for Python.
+•⁠  **Flask**: Implemented the web application using Flask, a lightweight and flexible web framework for Python.
 
-•⁠  *Collaborative Filtering*: Employed collaborative filtering algorithms to provide recommendations of places based on the preferences of similar users.
+•⁠  **Collaborative Filtering**: Employed collaborative filtering algorithms to provide recommendations of places based on the preferences of similar users.
 
-•⁠  *XGBoost*: Utilized XGBoost, a powerful machine learning library, for model-based recommendation and prediction tasks.
+•⁠  **XGBoost**: Utilized XGBoost, a powerful machine learning library, for model-based recommendation and prediction tasks.
 
 
 

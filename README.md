@@ -56,6 +56,11 @@ The model-based recommendation system effectively provides accurate ratings for 
     
 13. To create the model, you can run the recommen.py (stored in the private repository).
 
+
+## Demo Link 
+
+https://recommendation-system-414419.wl.r.appspot.com/
+
 ## Demo Video
 
 
